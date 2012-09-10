@@ -2,9 +2,9 @@
 Contributors: nerrad
 Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7871313
 Tags: category, series, organize, mass publish, post, taxonomy, issues, magazine
-Requires at least: 3.2
-Tested up to: 3.2
-Stable Tag: 2.2.2
+Requires at least: 3.3
+Tested up to: 3.4.2
+Stable Tag: 2.2.3
 
 An ADD-ON for the Organize Series Plugin that enables easy bulk publishing of all posts in a series at once.
 
@@ -60,6 +60,12 @@ A Series, unless specified as "Unpublished" starts in an "Ignored" state. This i
 When you "Publish" a Series, only posts already marked for publishing are now actually published and visible on the site; posts in draft status will stay as [unpublished] drafts although they still can be published at a later time. If you wish to Publish, there is an additional step. Clicking Publish will take you to the Publish Series screen which will allow you a chance to reorder the posts. Reordering posts sets the series_part custom field value which is used for sorting within some Organize Series template tags. You must then click "Publish Issue" on the right side of the screen to complete the process. Once you do this all posts in the Series will be published no matter what their previous status (draft, pending review, or published).
 
 == Changelog ==
+
+=2.2.3=
+
+* ensure full compatibility with WordPress 3.4.2
+* fixes some php warnings/notices
+* made sure language domain is a concrete string instead of variable reference in all translated strings.
 
 =2.2.2=
 
