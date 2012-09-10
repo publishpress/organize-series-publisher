@@ -3,7 +3,7 @@
 Plugin Name: Organize Series Publisher
 Plugin URI: http://unfoldingneurons.com/neurotic-plugins/organize-series-wordpress-plugin/
 Description: Allows an editor to publish an "issue", which is to say, all pending posts with a given series. Until a series is published, all posts with that series will remain in the pending state.  Credit really needs to go to  <a href="http://xplus3.net">Jonathan Brinley</a> for his original Issue Manage plugin because all I did was modify it for use with series rather than categories.  Also NOTE that this REQUIRES Organize Series to be installed.
-Version: 2.2.2
+Version: 2.2.3
 Author: Darren Ethier 
 Author URI: http://unfoldingneurons.com
 */
@@ -15,10 +15,8 @@ add_action('plugins_loaded', 'orgseries_check');
 add_action('init', 'org_pub_register_textdomain');
 
 function org_pub_register_textdomain() {
-	$orgpubdomain = 'organize-series-publisher';
-	global $orgpubdomain;
 	$dir = basename(dirname(__FILE__)).'/lang';
-	load_plugin_textdomain($orgpubdomain, false, $dir);
+	load_plugin_textdomain('organize-series-publisher', false, $dir);
 }
 
 function orgseries_check() {
@@ -33,15 +31,13 @@ function orgseries_pub_deactivate() {
 }
 
 function orgseries_plugin_warning() {
-	global $orgpubdomain;
-	$msg = '<div id="wpp-message" class="error fade"><p>'.__('Organize Series Publisher requires the Organize Series plugin to be installed and activated in order to work.  Plugin won\'t activate until this condition is met.', $orgpubdomain).'</p></div>';
+	$msg = '<div id="wpp-message" class="error fade"><p>'.__('Organize Series Publisher requires the Organize Series plugin to be installed and activated in order to work.  Plugin won\'t activate until this condition is met.', 'organize-series-publisher').'</p></div>';
 	echo $msg;
 }
 
 function series_issue_manager_manage_page() {
-  global $orgpubdomain;
   if ( function_exists('add_submenu_page') ) {
-    $page = add_submenu_page( 'edit.php', __('Manage Series Issues',$orgpubdomain), __('Publish Series',$orgpubdomain), 'publish_posts', 'manage-issues', 'series_issue_manager_admin' );
+    $page = add_submenu_page( 'edit.php', __('Manage Series Issues','organize-series-publisher'), __('Publish Series','organize-series-publisher'), 'publish_posts', 'manage-issues', 'series_issue_manager_admin' );
     add_action("admin_print_scripts-$page", 'series_issue_manager_scripts');
   }
 }
@@ -207,16 +203,15 @@ function series_issue_manager_scripts(  ) {
 }
 
 function series_issue_manager_add_series_form() {
-	global $orgpubdomain;
 	$published = get_option( 'im_published_series' );
 	$unpublished = get_option( 'im_unpublished_series' );
 	?>
         <div class="form-field">
 			<label for="series_publish">
-			<p><?php _e('Create as unpublished:', $orgpubdomain) ?>
+			<p><?php _e('Create as unpublished:', 'organize-series-publisher') ?>
 				<input style="float:left; width: 20px;" name="series_publish" id="series_publish" type="checkbox" value="unpublish" /> 
 			</p>
-				<p><?php _e('When checked, all posts you assign to this series will remain unpublished until you publish the entire series.', $orgpubdomain); ?></p>
+				<p><?php _e('When checked, all posts you assign to this series will remain unpublished until you publish the entire series.', 'organize-series-publisher'); ?></p>
 			</label>
         </div>
    <?php

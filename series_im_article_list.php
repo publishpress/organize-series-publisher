@@ -1,5 +1,4 @@
 <?php
-  global $orgpubdomain;
   $series = get_series( "orderby=name&hide_empty=0&include=$series_ID" );
   $posts = get_objects_in_term($series_ID, 'series' );
   $post_IDs = array();
@@ -24,13 +23,13 @@
 ?>
 <div class="wrap">
 <?php if ( have_posts() && isset( $series[0] ) ) : ?>
-  <h2><?php _e('Publishing Series:', $orgpubdomain); echo $series[0]->name; ?></h2>
+  <h2><?php _e('Publishing Series:', 'organize-series-publisher'); echo $series[0]->name; ?></h2>
   <div id="poststuff" class="metabox-holder has-right-sidebar">
     <div id="side-info-column" class="inner-sidebar">
       <div id="side-sortables" class="meta-box-sortables ui-sortable">
         <div id="submitdiv" class="postbox">
           <div class="handlediv" title="Click to toggle"><br /></div>
-          <h3 class="hndle"><span><?php _e('Publish Issue', $orgpubdomain); ?></span></h3>
+          <h3 class="hndle"><span><?php _e('Publish Issue', 'organize-series-publisher'); ?></span></h3>
           <form id="im_publish_form" method="get" action="edit.php">
             <div class="hidden-fields">
               <input type="hidden" name="page" id="im_publish_page" value="manage-issues" />
@@ -42,7 +41,7 @@
               <div id="minor-publishing">
                 <div id="misc-publishing-actions">
                   <div class="misc-pub-section misc-pub-section-last">
-                    <p><?php _e('Publication Date/Time:', $orgpubdomain); ?></p>
+                    <p><?php _e('Publication Date/Time:', 'organize-series-publisher'); ?></p>
                     <div id='timestampdiv'>
                       <?php
                         global $wp_locale;
@@ -73,7 +72,7 @@
                 </div>
               </div>
               <div id="major-publishing-actions">
-                <div id="publishing-action"><input type="submit" value="<?php _e('Publish Issue', $orgpubdomain); ?>" class="button-primary" id="publish" name="publish" onclick="var im_post_IDs = new Array(); jQuery('.im_article_list li').each( function(){im_post_IDs.push(jQuery(this).attr('id').substring(5));});jQuery('#im_publish_posts').val(im_post_IDs.join(','));alert(im_post_IDS);" /></div>
+                <div id="publishing-action"><input type="submit" value="<?php _e('Publish Issue', 'organize-series-publisher'); ?>" class="button-primary" id="publish" name="publish" onclick="var im_post_IDs = new Array(); jQuery('.im_article_list li').each( function(){im_post_IDs.push(jQuery(this).attr('id').substring(5));});jQuery('#im_publish_posts').val(im_post_IDs.join(','));alert(im_post_IDS);" /></div>
                 <div class="clear"></div>
               </div>
             </div>
@@ -83,7 +82,7 @@
     </div>
     <div id="post-body" class="has-sidebar">
       <div id="post-body-content" class="has-sidebar-content">
-        <p><?php _e('Drag the post names into the order you want them to be in the series, from the first part to the last part. Keep in mind that any <strong>Draft</strong> posts that are a part of this series will not show up in this list and will not be published.', $orgpubdomain); ?></p>
+        <p><?php _e('Drag the post names into the order you want them to be in the series, from the first part to the last part. Keep in mind that any <strong>Draft</strong> posts that are a part of this series will not show up in this list and will not be published.', 'organize-series-publisher'); ?></p>
         <ul class="im_article_list">
           <?php while ( have_posts() ) : the_post(); ?>
            <li id="post-<?php the_ID(); ?>" style="cursor: move; background-color: #E4F2FD; padding: 0.25em;">
@@ -97,8 +96,8 @@
     <br class="clear" />
   </div>
 <?php elseif ( isset( $series[0] ) ): ?>
-  <h2><?php echo sprintf(__('No pending posts in %1$s', $orgpubdomain), $series[0]->name); ?></h2>
+  <h2><?php echo sprintf(__('No pending posts in %1$s', 'organize-series-publisher'), $series[0]->name); ?></h2>
 <?php else: ?>
-  <h2><?php echo sprintf(__('Series %1$s does not exist', $orgpubdomain), $series_ID); ?></h2>
+  <h2><?php echo sprintf(__('Series %1$s does not exist', 'organize-series-publisher'), $series_ID); ?></h2>
 <?php endif; ?>
 </div>
