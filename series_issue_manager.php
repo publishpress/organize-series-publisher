@@ -1,12 +1,14 @@
 <?php
 /*
 Plugin Name: Organize Series Publisher
-Plugin URI: http://unfoldingneurons.com/neurotic-plugins/organize-series-wordpress-plugin/
+Plugin URI: http://organizeseries.com
 Description: Allows an editor to publish an "issue", which is to say, all pending posts with a given series. Until a series is published, all posts with that series will remain in the pending state.  Credit really needs to go to  <a href="http://xplus3.net">Jonathan Brinley</a> for his original Issue Manage plugin because all I did was modify it for use with series rather than categories.  Also NOTE that this REQUIRES Organize Series to be installed.
-Version: 2.2.4
+Version: 2.2.5.rc.000
 Author: Darren Ethier 
-Author URI: http://unfoldingneurons.com
+Author URI: http://organizeseries.com
 */
+
+define('OS_PUBLISHER_VERSION', '2.2.5.rc.000');
  
 // Register hooks for activation/deactivation.
 register_activation_hook( __FILE__, 'series_issue_manager_activation' );
